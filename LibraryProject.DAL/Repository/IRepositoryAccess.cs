@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace LibraryProject.Core.DatabaseOperations
+namespace LibraryProject.DAL.Repository
 {
     public interface IRepositoryAccess<TEntity> where TEntity:class
     {

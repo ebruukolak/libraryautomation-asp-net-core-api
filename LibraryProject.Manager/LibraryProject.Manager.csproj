@@ -5,15 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\LibraryProject.DAL\LibraryProject.DAL.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Helper\" />
+    <ProjectReference Include="..\LibraryProject.Entity\LibraryProject.Entity.csproj" />
   </ItemGroup>
 
 </Project>

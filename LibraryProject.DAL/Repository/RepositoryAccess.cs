@@ -1,18 +1,16 @@
-﻿using LibraryProject.Core.DatabaseOperations;
-using LibraryProject.DAL;
-using LibraryProject.DAL.Dapper;
-using System;
+﻿using LibraryProject.DAL.Repository.Dapper;
 using System.Collections.Generic;
-using System.Text;
 
-namespace LibraryProject.Core
+namespace LibraryProject.DAL.Repository
 {
    public class RepositoryAccess<TEntity> : IRepositoryAccess<TEntity> where TEntity : class
    {
       IDapperTools dapper;
+      
+      
       public RepositoryAccess()
       {
-         dapper = new DapperTools(Constants.dapperContext);
+         dapper = new DapperTools(Constants.LibraryConnection);
       }         
 
       public TEntity Get(object ID)

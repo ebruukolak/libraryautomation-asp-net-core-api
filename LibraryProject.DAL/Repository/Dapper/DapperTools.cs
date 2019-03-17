@@ -1,6 +1,6 @@
 ﻿using Dapper;
 using Dapper.Contrib.Extensions;
-using LibraryProject.DAL.Dapper;
+using LibraryProject.DAL.Repository.Dapper;
 using System;
 using System.Collections.Generic;
 using System.Text;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LibraryProject.DAL.Dapper
+namespace LibraryProject.DAL.Repository.Dapper
 {
    public interface IDapperTools
    {

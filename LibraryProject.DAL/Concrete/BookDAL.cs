@@ -1,10 +1,13 @@
-﻿using System;
+﻿using LibraryProject.DAL.Abstract;
+using LibraryProject.DAL.Repository;
+using LibraryProject.Entity;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace LibraryProject.DAL.Concrete
 {
-    public class BookDAL
-    {
-    }
+   public class BookDAL:RepositoryAccess<Book>, IBookDAL
+   {
+   }
 }

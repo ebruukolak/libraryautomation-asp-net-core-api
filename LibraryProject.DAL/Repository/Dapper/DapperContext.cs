@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Npgsql;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 
-namespace LibraryProject.DAL.Dapper
+namespace LibraryProject.DAL.Repository.Dapper
 {
    public class DapperContext : IDapperContext
    {
@@ -22,7 +23,7 @@ namespace LibraryProject.DAL.Dapper
          get
          {
             if (_connection == null)
-               _connection = new SqlConnection(_connectionString);
+               _connection = new NpgsqlConnection(_connectionString);
             if (string.IsNullOrWhiteSpace(_connection.ConnectionString))
                _connection.ConnectionString = _connectionString;
             return _connection;
