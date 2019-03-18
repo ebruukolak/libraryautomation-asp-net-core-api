@@ -7,10 +7,10 @@ namespace LibraryProject.Manager.Abstract
 {
    public interface IStudentManager
    {
-      students GetByID(int ID);
-      IEnumerable<students> GetStudents();
-      long Add(students student);
-      bool Update(students student);
-      bool Delete(students student);
+      student GetByID(int ID);
+      IEnumerable<student> GetStudents();
+      long Add(student student);
+      bool Update(student student);
+      bool Delete(student student);
    }
 }

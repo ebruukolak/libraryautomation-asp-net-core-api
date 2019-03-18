@@ -27,7 +27,7 @@ namespace LibraryProject.WebAPI.Controllers
 
         // GET api/values/5
         [HttpGet("{ID}")]
-        public students Get(int ID)
+        public student Get(int ID)
         {
          return studentManager.GetByID(ID);
         }

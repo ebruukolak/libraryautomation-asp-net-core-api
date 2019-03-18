@@ -15,25 +15,25 @@ namespace LibraryProject.Manager.Concrete
          studentDAL = _studentDAL;
       }
 
-      public students GetByID(int ID)
+      public student GetByID(int ID)
       {
          return studentDAL.Get(ID);
       }
-      public IEnumerable<students> GetStudents()
+      public IEnumerable<student> GetStudents()
       {
          return studentDAL.GetAll();
       }     
 
-      public long Add(students student)
+      public long Add(student student)
       {
          return studentDAL.Insert(student);
       }
 
-      public bool Update(students student)
+      public bool Update(student student)
       {
          return studentDAL.Update(student);
       }
-      public bool Delete(students student)
+      public bool Delete(student student)
       {
          return studentDAL.Delete(student);
       }

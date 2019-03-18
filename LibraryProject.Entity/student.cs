@@ -8,12 +8,11 @@ using Newtonsoft.Json;
 
 namespace LibraryProject.Entity
 {
-   [System.ComponentModel.DataAnnotations.Schema.Table("students")]
-   public class students
+   //[System.ComponentModel.DataAnnotations.Schema.Table("students")]
+   public class student
     {
       [Dapper.Contrib.Extensions.Key]
       public int id { get; set; }
-      [JsonProperty(PropertyName = "name")]
       public string name { get; set; }
       public string surname { get; set; }
       public string email { get; set; }

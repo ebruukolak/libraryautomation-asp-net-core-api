@@ -35,7 +35,9 @@ namespace LibraryProject.DAL.Repository.Dapper
          if (Connection.State != ConnectionState.Open)
             Connection.Open();
          if (_transaction?.Connection != null)
-            _transaction = Connection.BeginTransaction();
+            return _transaction;
+
+         _transaction = Connection.BeginTransaction();
 
          return _transaction;
       }

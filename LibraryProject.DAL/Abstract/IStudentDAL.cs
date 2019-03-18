@@ -6,7 +6,7 @@ using System.Text;
 
 namespace LibraryProject.DAL.Abstract
 {
-    public interface IStudentDAL:IRepositoryAccess<students>
+    public interface IStudentDAL:IRepositoryAccess<student>
     {
     }
 }

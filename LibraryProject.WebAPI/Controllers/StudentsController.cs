@@ -10,7 +10,6 @@ namespace LibraryProject.WebAPI.Controllers
 {
    //[Produces("application/json")]
    [Route("api/[controller]")]
-   [ApiController]
    public class StudentsController : Controller
    {
       IStudentManager _manager;
@@ -24,7 +23,7 @@ namespace LibraryProject.WebAPI.Controllers
       [Route("GetStudentList")]
       public IActionResult GetStudentList()
       {
-         var students= _manager.GetStudents();
+         var students = _manager.GetStudents();
          if (students.Count() > 0)
             return Ok(students);
 
@@ -41,8 +40,8 @@ namespace LibraryProject.WebAPI.Controllers
       }
 
       [HttpPost("AddStudent")]
- 
-      public ActionResult AddStudent(students student)
+
+      public ActionResult AddStudent(student student)
       {
          if (ModelState.IsValid)
          {
@@ -54,7 +53,7 @@ namespace LibraryProject.WebAPI.Controllers
 
       [HttpPut]
       [Route("UpdateStudent")]
-      public IActionResult UpdateStudent(students student)
+      public IActionResult UpdateStudent(student student)
       {
          if (ModelState.IsValid)
          {
