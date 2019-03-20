@@ -15,25 +15,25 @@ namespace LibraryProject.Manager.Concrete
          bookDAL = _bookDAL;
       }
 
-      public Book GetByID(int ID)
+      public book GetByID(int ID)
       {
          return bookDAL.Get(ID);
       }
-      public IEnumerable<Book> GetBooks()
+      public IEnumerable<book> GetBooks()
       {
          return bookDAL.GetAll();
       }
-      public long Add(Book book)
+      public long Add(book b)
       {
-         return bookDAL.Insert(book);
+         return bookDAL.Insert(b);
       }
-      public bool Update(Book book)
+      public bool Update(book b)
       {
-         return bookDAL.Update(book);
+         return bookDAL.Update(b);
       }
-      public bool Delete(Book book)
+      public bool Delete(book b)
       {
-         return bookDAL.Delete(book);
+         return bookDAL.Delete(b);
       }
 
      

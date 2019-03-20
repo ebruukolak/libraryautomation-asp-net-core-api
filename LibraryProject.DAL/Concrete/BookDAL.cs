@@ -7,7 +7,7 @@ using System.Text;
 
 namespace LibraryProject.DAL.Concrete
 {
-   public class BookDAL:RepositoryAccess<Book>, IBookDAL
+   public class BookDAL:RepositoryAccess<book>, IBookDAL
    {
    }
 }

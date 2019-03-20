@@ -9,9 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryProject.DAL", "Libra
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryProject.Core", "LibraryProject.Core\LibraryProject.Core.csproj", "{A632FC5E-EE87-4FE3-B046-371C8D003363}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryProject.WebAPI", "LibraryProject.WebAPI\LibraryProject.WebAPI.csproj", "{636E2D4D-131D-4AF8-A9C6-D97D8EA909C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryProject.WebAPI", "LibraryProject.WebAPI\LibraryProject.WebAPI.csproj", "{636E2D4D-131D-4AF8-A9C6-D97D8EA909C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryProject.Manager", "LibraryProject.Manager\LibraryProject.Manager.csproj", "{BB9A1BE7-2F99-4327-BFC3-0B303AEBF9A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryProject.Manager", "LibraryProject.Manager\LibraryProject.Manager.csproj", "{BB9A1BE7-2F99-4327-BFC3-0B303AEBF9A1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

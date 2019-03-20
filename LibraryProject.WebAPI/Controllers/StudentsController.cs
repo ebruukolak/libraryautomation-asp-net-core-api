@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LibraryProject.WebAPI.Controllers
 {
-   //[Produces("application/json")]
    [Route("api/[controller]")]
    public class StudentsController : Controller
    {
@@ -53,12 +52,37 @@ namespace LibraryProject.WebAPI.Controllers
 
       [HttpPut]
       [Route("UpdateStudent")]
-      public IActionResult UpdateStudent(student student)
+      public IActionResult UpdateStudent(student s)
       {
          if (ModelState.IsValid)
          {
-            _manager.Update(student);
-            return StatusCode(202);
+            var student = _manager.GetByID(s.id);
+            if (student != null)
+            {
+               _manager.Update(student);
+               return StatusCode(202);
+            }
+            else
+               return NotFound();
+
+         }
+         return BadRequest();
+      }
+
+      [HttpDelete]
+      [Route("DeleteStudent")]
+      public IActionResult DeleteStudent(student s)
+      {
+         if (ModelState.IsValid)
+         {
+            var student = _manager.GetByID(s.id);
+            if (student != null)
+            {
+               _manager.Delete(student);
+               return StatusCode(200);
+            }
+            else
+               return NotFound();
          }
          return BadRequest();
       }

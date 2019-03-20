@@ -4,13 +4,14 @@ using System.Text;
 
 namespace LibraryProject.Entity
 {
-    public class Book
+    public class book
     {
-      public int ID { get; set; }
-      public int TypeID { get; set; }
-      public string Name { get; set; }
-      public string Writer { get; set; }
-      public int ShelfNumber { get; set; }
-      public DateTime IssueDate { get; set; }
+      [Dapper.Contrib.Extensions.Key]
+      public int id { get; set; }
+      public int typeId { get; set; }
+      public string name { get; set; }
+      public string writer { get; set; }
+      public int shelfNumber { get; set; }
+      public DateTime issueDate { get; set; }
     }
 }

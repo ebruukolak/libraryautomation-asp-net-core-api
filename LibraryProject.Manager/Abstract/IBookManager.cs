@@ -8,11 +8,11 @@ namespace LibraryProject.Manager.Abstract
 {
     public interface IBookManager
     {
-      Book GetByID(int ID);
-      IEnumerable<Book> GetBooks();
-      long Add(Book book);
-      bool Update(Book book);
-      bool Delete(Book book);
+      book GetByID(int ID);
+      IEnumerable<book> GetBooks();
+      long Add(book b);
+      bool Update(book b);
+      bool Delete(book b);
       
     }
 }
