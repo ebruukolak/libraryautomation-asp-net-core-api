@@ -11,18 +11,18 @@ namespace LibraryProject.WebAPI.Controllers
    [Route("api/[controller]")]
    public class StudentsController : Controller
    {
-      IStudentManager _manager;
+      IStudentManager studentManager;
 
       public StudentsController(IStudentManager manager)
       {
-         _manager = manager;
+         studentManager = manager;
       }
 
       [HttpGet]
       [Route("GetStudentList")]
       public IActionResult GetStudentList()
       {
-         var students = _manager.GetStudents();
+         var students = studentManager.GetStudents();
          if (students.Count() > 0)
             return Ok(students);
 
@@ -33,7 +33,7 @@ namespace LibraryProject.WebAPI.Controllers
       public IActionResult GetStudent(int ID)
       {
          if (ID > 0)
-            return Ok(_manager.GetByID(ID));
+            return Ok(studentManager.GetByID(ID));
 
          return BadRequest();
       }
@@ -44,7 +44,7 @@ namespace LibraryProject.WebAPI.Controllers
       {
          if (ModelState.IsValid)
          {
-            _manager.Add(student);
+            studentManager.Add(student);
             return StatusCode(201);
          }
          return BadRequest();
@@ -56,10 +56,10 @@ namespace LibraryProject.WebAPI.Controllers
       {
          if (ModelState.IsValid)
          {
-            var student = _manager.GetByID(s.id);
+            var student = studentManager.GetByID(s.id);
             if (student != null)
             {
-               _manager.Update(student);
+               studentManager.Update(student);
                return StatusCode(202);
             }
             else
@@ -75,10 +75,10 @@ namespace LibraryProject.WebAPI.Controllers
       {
          if (ModelState.IsValid)
          {
-            var student = _manager.GetByID(s.id);
+            var student = studentManager.GetByID(s.id);
             if (student != null)
             {
-               _manager.Delete(student);
+               studentManager.Delete(student);
                return StatusCode(200);
             }
             else

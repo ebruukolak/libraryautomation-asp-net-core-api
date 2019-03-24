@@ -8,7 +8,7 @@ namespace LibraryProject.Manager.Abstract
     public interface IStudentsBookManager
     {
       studentBook GetByID(int ID);
-      IEnumerable<studentBook> GetStudents();
+      IEnumerable<studentBook> GetStudentBooks();
       long Add(studentBook sb);
       bool Update(studentBook sb);
       bool Delete(studentBook sb);

@@ -14,7 +14,7 @@ namespace LibraryProject.Manager.Concrete
       {
          _studentsBookDAL = studentsBookDAL;
       }
-      public IEnumerable<studentBook> GetStudents()
+      public IEnumerable<studentBook> GetStudentBooks()
       {
          throw new NotImplementedException();
       }

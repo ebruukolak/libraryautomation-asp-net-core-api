@@ -32,13 +32,15 @@ namespace LibraryProject.WebAPI
       public void ConfigureServices(IServiceCollection services)
       {
          var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", true, false).Build();
-         //services.AddTransient<IConnectionConfig>(f => new ConnectionConfig(config["ConnectionStrings:LibraryConnection"]));
          services.AddScoped<IStudentManager, StudentManager>();
          services.AddScoped<IStudentDAL, StudentDAL>();
+         services.AddScoped<IBookManager, BookManager>();
+         services.AddScoped<IBookDAL, BookDAL>();
+         services.AddScoped<IStudentsBookManager, StudentsBookManager>();
+         services.AddScoped<IStudentsBookDAL, StudentsBookDAL>();
 
-         //services.AddOptions().Configure<ConnectionStrings>(Configuration.GetSection("ConnectionStrings:LibraryConnection")).BuildServiceProvider();
 
-         Constants.LibraryConnection =  Configuration.GetSection("ConnectionStrings:LibraryConnection").Get<string>();
+         Constants.LibraryConnection = Configuration.GetSection("ConnectionStrings:LibraryConnection").Get<string>();
 
          services.AddMvc();
          services.AddMvc().AddJsonOptions(opt =>
@@ -60,7 +62,7 @@ namespace LibraryProject.WebAPI
          {
             app.UseDeveloperExceptionPage();
          }
-         
+
          app.UseMvc();
       }
    }
