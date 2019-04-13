@@ -16,6 +16,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json.Serialization;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace LibraryProject.WebAPI
 {
@@ -38,21 +39,28 @@ namespace LibraryProject.WebAPI
          services.AddScoped<IBookDAL, BookDAL>();
          services.AddScoped<IStudentsBookManager, StudentsBookManager>();
          services.AddScoped<IStudentsBookDAL, StudentsBookDAL>();
-
+         services.AddScoped<IUserDAL, UserDAL>();
+         services.AddScoped<IUserManager, UserManager>();
 
          Constants.LibraryConnection = Configuration.GetSection("ConnectionStrings:LibraryConnection").Get<string>();
 
          services.AddMvc();
-         services.AddMvc().AddJsonOptions(opt =>
+         services.AddSwaggerGen(c =>
          {
-            if (opt.SerializerSettings.ContractResolver != null)
+            c.SwaggerDoc("CoreSwagger", new Info
             {
-               var resolver = opt.SerializerSettings.ContractResolver as DefaultContractResolver;
-               resolver.NamingStrategy = null;
-            }
+               Title = "Swagger on ASP.NET Core",
+               Version = "4.0.1",
+               Description = "Try Swagger on (ASP.NET Core 2.2)"
+            });
+            //c.AddSecurityDefinition("Bearer", new ApiKeyScheme
+            //{
+            //   Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
+            //   Name = "Authorization",
+            //   In = "header",
+            //   Type = "apiKey"
+            //});
          });
-
-
       }
 
       // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -64,6 +72,12 @@ namespace LibraryProject.WebAPI
          }
 
          app.UseMvc();
+         app.UseSwagger();
+         app.UseSwaggerUI(c =>
+         {
+            c.SwaggerEndpoint("/swagger/CoreSwagger/swagger.json", "Swagger on ASP.NET Core");
+         });
+         app.UseHttpsRedirection();
       }
    }
 }

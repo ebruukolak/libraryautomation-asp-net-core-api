@@ -24,6 +24,7 @@ namespace LibraryProject.WebAPI.Controllers
             return Ok(bookManager);
          return BadRequest();
       }
+      [HttpGet]
       public IActionResult GetBooks()
       {
          var books = bookManager.GetBooks();
