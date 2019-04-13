@@ -11,23 +11,21 @@ namespace LibraryProject.WebAPI.Controllers
    public class AccountsController : Controller
    {
       IUserManager userManager;
-      private readonly AppSettings appSettings;
-      public AccountsController(IUserManager userManager, IOptions<AppSettings> appSettings)
+      public AccountsController(IUserManager userManager)
       {
          this.userManager = userManager;
-         this.appSettings = appSettings.Value;
       }
       [HttpGet]
-      public IActionResult Login([FromBody]UserDTO userDTO)
+      public IActionResult Login([FromBody]LoginDTO userDTO)
       {
          var user = userManager.Authanticate(userDTO.username, userDTO.password);
          if (user == null)
             return NotFound("Username or password is incorrect");
-
+         var userRole = userManager.GetUserRole(user.id);
          TokenHelper tokenHelper = new TokenHelper();
-         var token= tokenHelper.GenerateToken(user);
+         var token= tokenHelper.GenerateToken(user,userRole.rolename);
 
-         return Ok(new UserDTO
+         return Ok(new LoginDTO
          {
             username=user.username,
             password=user.password,

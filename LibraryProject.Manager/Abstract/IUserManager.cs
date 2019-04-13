@@ -13,5 +13,9 @@ namespace LibraryProject.Manager.Abstract
       bool Update(user u);
       bool Delete(user u);
       user Authanticate(string username, string password);
+      long AddRole(int userID, string roleName);
+      role GetUserRole(int userID);
+      void DeleteUserRole(int userID);
+      user GetByUsername(string username);
    }
 }

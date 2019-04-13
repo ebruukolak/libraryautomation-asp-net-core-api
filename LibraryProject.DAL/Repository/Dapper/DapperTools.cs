@@ -94,9 +94,9 @@ namespace LibraryProject.DAL
          });
       }
 
-      public int Execute(string sql, object param = null)
+      public void Execute(string sql, object param = null)
       {
-         return _context.Transaction(transaction =>   
+          _context.Transaction(transaction =>   
             _context.Connection.Execute(sql, param, transaction)
          ); 
       }
@@ -108,7 +108,14 @@ namespace LibraryProject.DAL
             var result = _context.Connection.ExecuteScalar(sql, param, transaction);
             return result;
          });
-      }  
-      
+      }
+      public IEnumerable<T> Query<T>(string sql, object param = null) where T : class
+      {
+         return _context.Transaction(transaction =>
+         {
+            var result = _context.Connection.Query<T>(sql, param, transaction);
+            return result;
+         });
+      }
    }
 }

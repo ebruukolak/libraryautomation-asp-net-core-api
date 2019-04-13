@@ -8,5 +8,9 @@ namespace LibraryProject.DAL.Abstract
 {
     public interface IUserDAL:IRepositoryAccess<user>
     {
-    }
+      long AddRole(int ID, string roleName);
+      role GetUserRole(int userID);
+      void DeleteUserRole(role r);
+      user GetByUsername(string username);
+   }
 }

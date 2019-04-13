@@ -22,7 +22,7 @@ namespace LibraryProject.WebAPI.Helpers
       {
          
       }
-      public string GenerateToken(user user)
+      public string GenerateToken(user user,string roleName)
       {
          var tokenHandler = new JwtSecurityTokenHandler();
          var key = Encoding.ASCII.GetBytes(appSettings.Secret);
@@ -32,7 +32,7 @@ namespace LibraryProject.WebAPI.Helpers
                new Claim[]
                {
                   new Claim(ClaimTypes.Name,user.id.ToString()),
-                  new Claim(ClaimTypes.Role,user.usertype.ToString())
+                  new Claim(ClaimTypes.Role,roleName)
                }),
             Expires = DateTime.UtcNow.AddHours(1),
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)

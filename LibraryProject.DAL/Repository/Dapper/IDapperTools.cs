@@ -15,7 +15,9 @@ namespace LibraryProject.DAL.Repository.Dapper
       bool Delete<T>(T obj) where T : class;
       bool Delete<T>(IEnumerable<T> list) where T : class;
       bool DeleteAll<T>() where T : class;
-      int Execute(string sql, object param = null);
+      void Execute(string sql, object param = null);
       object ExecuteScalar(string sql, object param = null);
+      IEnumerable<T> Query<T>(string sql, object param = null) where T : class;
+      
    }
 }

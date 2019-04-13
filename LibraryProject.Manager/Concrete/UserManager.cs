@@ -41,11 +41,11 @@ namespace LibraryProject.Manager.Concrete
          return userDAL.Delete(u);
       }
 
-      public user Authanticate(string username ,string password)
+      public user Authanticate(string username, string password)
       {
          if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             return null;
-         var user = userDAL.GetAll().Where(x=>x.username==username).FirstOrDefault();
+         var user = userDAL.GetAll().Where(x => x.username == username).FirstOrDefault();
          if (user == null)
             return null;
 
@@ -55,11 +55,33 @@ namespace LibraryProject.Manager.Concrete
          return user;
 
       }
+      public long AddRole(int userID, string roleName)
+      {
+         return userDAL.AddRole(userID, roleName);
+      }
+      public role GetUserRole(int userID)
+      {
+         return userDAL.GetUserRole(userID);
+      }
 
+      public void DeleteUserRole(int userID)
+      {
+         var role = GetUserRole(userID);
+         userDAL.DeleteUserRole(role);
+      }
+      public user GetByUsername(string username)
+      {
+         return userDAL.GetByUsername(username);
+      }
+
+      #region Private Methods
       private bool CheckPassword(string password)
       {
          //TODO
          throw new NotImplementedException();
       }
+
+      #endregion
+
    }
 }

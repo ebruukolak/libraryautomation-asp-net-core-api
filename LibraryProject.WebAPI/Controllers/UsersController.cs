@@ -1,5 +1,7 @@
-﻿using LibraryProject.Entity;
+﻿using AutoMapper;
+using LibraryProject.Entity;
 using LibraryProject.Manager.Abstract;
+using LibraryProject.WebAPI.ModelDTO;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -8,13 +10,15 @@ using System.Text;
 
 namespace LibraryProject.Manager.Concrete
 {
-    public class UsersController:Controller
-    {
+   public class UsersController : Controller
+   {
       IUserManager userManager;
+      private IMapper mapper;
 
-      public UsersController(IUserManager userManager)
+      public UsersController(IUserManager userManager, IMapper mapper)
       {
          this.userManager = userManager;
+         this.mapper = mapper;
       }
 
       [HttpGet]
@@ -22,7 +26,7 @@ namespace LibraryProject.Manager.Concrete
       public IActionResult GetUserList()
       {
          var users = userManager.GetUsers();
-         if (users.Count()> 0)
+         if (users.Count() > 0)
             return Ok(users);
 
          return BadRequest();
@@ -38,11 +42,14 @@ namespace LibraryProject.Manager.Concrete
       }
 
       [HttpPost("AddUser")]
-      public ActionResult AddUser(user u)
+      public ActionResult AddUser(UserDTO u)
       {
          if (ModelState.IsValid)
          {
-            userManager.Add(u);
+            var user = mapper.Map<user>(u);
+            var ID = userManager.Add(user);
+            if (ID > 0)
+               userManager.AddRole(user.id, "Admin");
             return StatusCode(201);
          }
          return BadRequest();
@@ -50,14 +57,15 @@ namespace LibraryProject.Manager.Concrete
 
       [HttpPut]
       [Route("UpdateUser")]
-      public IActionResult UpdateUser(user u)
+      public IActionResult UpdateUser(UserDTO u)
       {
          if (ModelState.IsValid)
          {
-            var user = userManager.GetByID(u.id);
-            if (user != null)
+            var user = mapper.Map<user>(u);
+            var modifiedUser = userManager.GetByID(user.id);
+            if (modifiedUser != null)
             {
-               userManager.Update(user);
+               userManager.Update(modifiedUser);
                return StatusCode(202);
             }
             else
@@ -69,14 +77,18 @@ namespace LibraryProject.Manager.Concrete
 
       [HttpDelete]
       [Route("DeleteUser")]
-      public IActionResult DeleteUser(user u)
+      public IActionResult DeleteUser(UserDTO u)
       {
          if (ModelState.IsValid)
          {
-            var user = userManager.GetByID(u.id);
-            if (user != null)
+            var user = mapper.Map<user>(u);
+            var deletedUser = userManager.GetByUsername(user.username);
+            if (deletedUser != null)
             {
-               userManager.Delete(user);
+               var id = deletedUser.id;
+               var result = userManager.Delete(deletedUser);
+               if (result)
+                  userManager.DeleteUserRole(id);
                return StatusCode(200);
             }
             else
