@@ -13,6 +13,6 @@ namespace LibraryProject.Manager.Abstract
       long Add(book b);
       bool Update(book b);
       bool Delete(book b);
-      
-    }
+      book GetByName(string name);
+   }
 }

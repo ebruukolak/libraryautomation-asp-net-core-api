@@ -6,7 +6,8 @@ using System.Text;
 
 namespace LibraryProject.DAL.Abstract
 {
-    public interface IBookDAL:IRepositoryAccess<book>
-    {
-    }
+   public interface IBookDAL : IRepositoryAccess<book>
+   {
+      book GetByName(string name);
+   }
 }

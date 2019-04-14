@@ -36,6 +36,9 @@ namespace LibraryProject.Manager.Concrete
          return bookDAL.Delete(b);
       }
 
-     
+      public book GetByName(string name)
+      {
+         return bookDAL.GetByName(name);
+      }
    }
 }

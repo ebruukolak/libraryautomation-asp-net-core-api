@@ -8,6 +8,6 @@ using System.Text;
 namespace LibraryProject.DAL.Concrete
 {
     public class StudentDAL: RepositoryAccess<student>, IStudentDAL
-   {
+    {
     }
 }

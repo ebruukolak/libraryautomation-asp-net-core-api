@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace LibraryProject.Entity
+namespace LibraryProject.WebAPI.ModelDTO
 {
-    public class book
-    {
-      [Dapper.Contrib.Extensions.Key]
-      public int id { get; set; }
-      //public int typeId { get; set; }
+   public class BookDTO
+   {
       public string name { get; set; }
       public string writer { get; set; }
       public int shelfNumber { get; set; }
       public DateTime issueDate { get; set; }
+      public string categoryname { get; set; }
    }
 }

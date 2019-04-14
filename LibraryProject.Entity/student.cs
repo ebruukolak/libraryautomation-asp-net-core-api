@@ -17,6 +17,5 @@ namespace LibraryProject.Entity
       public string surname { get; set; }
       public string email { get; set; }
       public DateTime createDate { get; set; }
-
     }
 }

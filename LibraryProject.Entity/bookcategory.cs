@@ -4,10 +4,11 @@ using System.Text;
 
 namespace LibraryProject.Entity
 {
-    public class bookType
+    public class bookcategory
     {
       [Dapper.Contrib.Extensions.Key]
-      public int ID { get; set; }
-      public string Name { get; set; }
+      public int id { get; set; }
+      public int bookid { get; set; }
+      public int categoryid { get; set; }
     }
 }

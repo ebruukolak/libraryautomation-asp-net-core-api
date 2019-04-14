@@ -14,6 +14,8 @@ namespace LibraryProject.WebAPI.Helpers
       {
          CreateMap<user, UserDTO>();
          CreateMap<UserDTO, user>();
+         CreateMap<book, BookDTO>().ForMember(x => x.categoryname, opt => opt.Ignore());
+         CreateMap<BookDTO, book>();
       }
    }
 }

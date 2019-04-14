@@ -62,7 +62,7 @@ namespace LibraryProject.Manager.Concrete
          if (ModelState.IsValid)
          {
             var user = mapper.Map<user>(u);
-            var modifiedUser = userManager.GetByID(user.id);
+            var modifiedUser = userManager.GetByUsername(user.username);
             if (modifiedUser != null)
             {
                userManager.Update(modifiedUser);
