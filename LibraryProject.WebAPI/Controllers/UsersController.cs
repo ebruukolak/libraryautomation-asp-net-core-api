@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using LibraryProject.Entity;
 using LibraryProject.Manager.Abstract;
+using LibraryProject.WebAPI.Helpers;
 using LibraryProject.WebAPI.ModelDTO;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,11 +16,13 @@ namespace LibraryProject.Manager.Concrete
    {
       IUserManager userManager;
       private IMapper mapper;
+      private readonly PasswordKeys key;
 
-      public UsersController(IUserManager userManager, IMapper mapper)
+      public UsersController(IUserManager userManager, IMapper mapper, IOptions<PasswordKeys> key)
       {
          this.userManager = userManager;
          this.mapper = mapper;
+         this.key = key.Value;
       }
 
       [HttpGet]
@@ -45,9 +49,9 @@ namespace LibraryProject.Manager.Concrete
       public ActionResult AddUser(UserDTO u)
       {
          if (ModelState.IsValid)
-         {
+         {            
             var user = mapper.Map<user>(u);
-            var ID = userManager.Add(user);
+            var ID = userManager.Add(user,u.password,key.KeyForPassword);
             if (ID > 0)
                userManager.AddRole(user.id, "Admin");
             return StatusCode(201);
@@ -65,7 +69,7 @@ namespace LibraryProject.Manager.Concrete
             var modifiedUser = userManager.GetByUsername(user.username);
             if (modifiedUser != null)
             {
-               userManager.Update(modifiedUser);
+               userManager.Update(modifiedUser,u.password,key.KeyForPassword);
                return StatusCode(202);
             }
             else

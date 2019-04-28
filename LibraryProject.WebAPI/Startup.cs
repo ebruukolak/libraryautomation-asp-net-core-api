@@ -10,6 +10,7 @@ using LibraryProject.DAL.Repository;
 using LibraryProject.DAL.Repository.Dapper;
 using LibraryProject.Manager.Abstract;
 using LibraryProject.Manager.Concrete;
+using LibraryProject.WebAPI.Helpers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -63,7 +64,10 @@ namespace LibraryProject.WebAPI
             //});
          });
          services.AddAutoMapper();
-         
+         var appSettingsSection = Configuration.GetSection("AppSettings");
+         services.Configure<AppSettings>(appSettingsSection);
+         services.Configure<PasswordKeys>(Configuration.GetSection("PasswordKeys"));
+
       }
 
       // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

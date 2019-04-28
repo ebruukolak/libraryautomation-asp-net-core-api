@@ -13,19 +13,10 @@ namespace LibraryProject.WebAPI.Helpers
 {
     public class TokenHelper
     {
-      private readonly AppSettings appSettings;
-      public TokenHelper(IOptions<AppSettings> settings)
-      {
-         this.appSettings = settings.Value;
-      }
-      public TokenHelper()
-      {
-         
-      }
-      public string GenerateToken(user user,string roleName)
+      public static string GenerateToken(user user,string roleName,string secretKey)
       {
          var tokenHandler = new JwtSecurityTokenHandler();
-         var key = Encoding.ASCII.GetBytes(appSettings.Secret);
+         var key = Encoding.ASCII.GetBytes(secretKey);
          var tokenDescriptor = new SecurityTokenDescriptor
          {
             Subject = new System.Security.Claims.ClaimsIdentity(

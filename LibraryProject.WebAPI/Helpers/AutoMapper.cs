@@ -12,8 +12,7 @@ namespace LibraryProject.WebAPI.Helpers
    {
       public AutoMapper()
       {
-         CreateMap<user, UserDTO>();
-         CreateMap<UserDTO, user>();
+         CreateMap<user, UserDTO>().ReverseMap().ForMember(x => x.password, opt => opt.Ignore());
          CreateMap<book, BookDTO>().ForMember(x => x.categoryname, opt => opt.Ignore());
          CreateMap<BookDTO, book>();
       }

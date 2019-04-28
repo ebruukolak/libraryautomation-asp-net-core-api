@@ -37,7 +37,7 @@ namespace LibraryProject.DAL.Concrete
       }
       public user GetByUsername(string username)
       {
-         return dapperTools.Query<user>(@"Select * from users where username=@username", new { username }).First();
+         return dapperTools.Query<user>(@"Select * from users where username=@username limit 1", new { username }).FirstOrDefault();
       }
 
    }
